@@ -6,7 +6,7 @@ class BurgerBuider extends React.Component {
     return (
       <Aux>
         <div>Burger</div>
-        <div>Builder Controls</div>
+        <div>Build Controls</div>
       </Aux>
     );
   }
