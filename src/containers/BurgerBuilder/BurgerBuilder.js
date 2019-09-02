@@ -80,7 +80,7 @@ class BurgerBuider extends React.Component {
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
-    console.log(disabledInfo);
+    console.log("disabledInfo", disabledInfo);
     return (
       <Aux>
         <Modal
