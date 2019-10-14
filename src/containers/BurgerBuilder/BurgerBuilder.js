@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import Aux from "../../setup-hoc/Auxiliary/Auxiliary";
+import Aux from "../../_hoc/_Aux/_Aux";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
-import withErrorHandler from "../../setup-hoc/withErrorHandler/withErrorHandler";
+import withErrorHandler from "../../_hoc/withErrorHandler/withErrorHandler";
 
 import axios from "../../axios-orders";
 

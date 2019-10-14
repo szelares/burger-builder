@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import axios from "../../axios-orders";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Order from "../../components/Order/Order";
-import withErrorHandler from "../../setup-hoc/withErrorHandler/withErrorHandler";
+import withErrorHandler from "../../_hoc/withErrorHandler/withErrorHandler";
 import * as actions from "../../store/actions/index";
 
 class Orders extends Component {
