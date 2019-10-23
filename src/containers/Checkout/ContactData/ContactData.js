@@ -7,6 +7,7 @@ import axios from "../../../axios-orders";
 import Input from "../../../components/UI/Input/Input";
 import withErrorHandler from "../../../_hoc/withErrorHandler/withErrorHandler";
 import * as actions from "../../../store/actions/index";
+import { updateObject, checkValidity } from "../../../shared/utility";
 
 class ContactData extends Component {
   state = {
@@ -97,7 +98,6 @@ class ContactData extends Component {
   };
   orderHandler = e => {
     e.preventDefault();
-    console.log("[ContactData] props", this.props);
 
     const formData = {};
     for (let formDataElementId in this.state.orderForm) {
@@ -114,50 +114,30 @@ class ContactData extends Component {
     this.props.onOrderBurger(order, this.props.token);
   };
 
-  checkValidity(value, rules) {
-    let isValid = true;
-    if (!rules) {
-      return true;
-    }
-    if (rules.isRequired) {
-      isValid = value.trim() !== "" && isValid;
-    }
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-    if (rules.isEmail) {
-      const pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-      isValid = pattern.test(value) && isValid;
-    }
-    return isValid;
-  }
-
   inputChangedHandler(event, inputId) {
-    const updatedOrderForm = { ...this.state.orderForm };
-    const updatedFormEl = { ...updatedOrderForm[inputId] };
-    updatedFormEl.value = event.target.value;
-    updatedFormEl.valid = this.checkValidity(
-      updatedFormEl.value,
-      updatedFormEl.validation
-    );
-    updatedFormEl.touched = true;
-    updatedOrderForm[inputId] = updatedFormEl;
+    const updatedFormEl = updateObject(this.state.orderForm[inputId], {
+      value: event.target.value,
+      valid: checkValidity(
+        event.target.value,
+        this.state.orderForm[inputId].validation
+      ),
+      touched: true
+    });
+    const updatedOrderForm = updateObject(this.state.orderForm, {
+      [inputId]: updatedFormEl
+    });
     let formIsValid = true;
     for (inputId in updatedOrderForm) {
       formIsValid = updatedOrderForm[inputId].valid && formIsValid;
     }
     this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid });
-    console.log(updatedOrderForm);
   }
+
   render() {
     const formElementsArray = [];
     for (let key in this.state.orderForm) {
       formElementsArray.push({ id: key, config: this.state.orderForm[key] });
     }
-    console.log("formElementsArray", formElementsArray);
     let form = (
       <form onSubmit={this.orderHandler}>
         {formElementsArray.map(formEl => (

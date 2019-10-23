@@ -17,7 +17,6 @@ class BurgerBuider extends React.Component {
     purchasing: false
   };
   componentDidMount() {
-    console.log("[BurgerBuilder]", this.props);
     this.props.onInitIngredients();
   }
   updatePurchaseState = ingredients => {
