@@ -12,7 +12,7 @@ import axios from "../../axios-orders";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import * as actions from "../../store/actions/index";
 
-class BurgerBuider extends React.Component {
+export class BurgerBuilder extends React.Component {
   state = {
     purchasing: false
   };
@@ -119,4 +119,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withErrorHandler(BurgerBuider, axios));
+)(withErrorHandler(BurgerBuilder, axios));

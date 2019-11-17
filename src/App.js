@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import * as actions from "./store/actions/index";
 import asyncComponent from "./_hoc/asyncComponent/asyncComponent";
 import Layout from "./_hoc/Layout/Layout";
-import BurgerBuider from "./containers/BurgerBuilder/BurgerBuilder";
+import BurgerBuilder from "./containers/BurgerBuilder/BurgerBuilder";
 // import Checkout from "./containers/Checkout/Checkout";
 // import Orders from "./containers/Orders/Orders";
 // import Auth from "./containers/Auth/Auth";
@@ -28,7 +28,7 @@ class App extends Component {
     let routes = (
       <Switch>
         <Route path="/auth" component={asyncAuth} />
-        <Route path="/" component={BurgerBuider} />
+        <Route path="/" component={BurgerBuilder} />
       </Switch>
     );
     if (this.props.isAuth) {
@@ -38,7 +38,7 @@ class App extends Component {
           <Route path="/orders" component={asyncOrders} />
           <Route path="/auth" component={asyncAuth} />
           <Route path="/logout" component={Logout} />
-          <Route path="/" component={BurgerBuider} />
+          <Route path="/" component={BurgerBuilder} />
         </Switch>
       );
     }

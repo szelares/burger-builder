@@ -22,18 +22,18 @@ export const authFail = error => {
   };
 };
 
-export const logout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("expirationTime");
-  localStorage.removeItem("userId");
-  return {
-    type: actionTypes.AUTH_LOGOUT
-  };
-};
+// export const logout = () => {
+//   localStorage.removeItem("token");
+//   localStorage.removeItem("expirationTime");
+//   localStorage.removeItem("userId");
+//   return {
+//     type: actionTypes.AUTH_LOGOUT
+//   };
+// };
 export const checkAuthTimeout = expirationTime => {
   return dispatch => {
     setTimeout(() => {
-      dispatch(logout());
+      // dispatch(logout());
     }, expirationTime * 1000);
   };
 };
@@ -81,11 +81,11 @@ export const authCheckState = () => {
   return dispatch => {
     const token = localStorage.getItem("token");
     if (!token) {
-      dispatch(logout());
+      // dispatch(logout());
     } else {
       const expirationTime = new Date(localStorage.getItem("expirationTime"));
       if (expirationTime.getTime() <= new Date().getTime()) {
-        dispatch(logout());
+        // dispatch(logout());
       } else {
         const userId = localStorage.getItem("userId");
         dispatch(authSuccess(token, userId));
